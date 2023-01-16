@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Web3 from "web3";
 import { Magic } from "magic-sdk";
 import { ConnectExtension } from "@magic-ext/connect";
@@ -61,25 +61,27 @@ function App() {
       <div className="flex justify-center">
         {account ? (
           <div>
-            <div>
+            <div className="mb-4">
               <p>Wallet: {walletType}</p>
               <p>Address: {account}</p>
               <p>Balance: {balance}</p>
             </div>
-            {walletType === "magic" && (
+            <div className="flex justify-center gap-4">
+              {walletType === "magic" && (
+                <button
+                  className="px-6 py-2 rounded-full bg-[#6851FF] text-white "
+                  onClick={showUserWallet}
+                >
+                  Show Wallet
+                </button>
+              )}
               <button
                 className="px-6 py-2 rounded-full bg-[#6851FF] text-white"
-                onClick={showUserWallet}
+                onClick={disconnectWallet}
               >
-                Show Wallet
+                Logout
               </button>
-            )}
-            <button
-              className="px-6 py-2 rounded-full bg-[#6851FF] text-white"
-              onClick={disconnectWallet}
-            >
-              Logout
-            </button>
+            </div>
           </div>
         ) : (
           <button
